@@ -1,5 +1,7 @@
-const timer = document.getElementById('timer')
-countdown = 3;
+
+const timer = document.getElementById('timer');
+
+let countdown = 3;
 
 setInterval(() => {
     
