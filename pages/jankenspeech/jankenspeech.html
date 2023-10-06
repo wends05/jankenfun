@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="jankenjs.js"></script>
 </head>
-<body>
+<body class="bg-[url('./jKspeechfiles/background.png')] bg-center bg-inherit bg-no-repeat ">
         <div class="grid grid-flow-col h-10  mt-40 justify-center gap-40
             lg:gap-44
             animation ease-in-out delay-100 duration-100
@@ -18,28 +19,38 @@
         animation ease-in-out delay-100 duration-100
         ">
             <div>
-                <img class="max-h-60 lg:max-h-72
+                <div>
+                    <img class="max-h-60 lg:max-h-72
                 animation ease-in-out delay-75 duration-100
-                " src="./jKspeechfiles/frame.png" alt="">
+                " src="./jKspeechfiles/frame.png">
+                </div>
+                
             </div>
 
             <img class="absolute h-10 align-middle mt-20
                 lg:mt-24 lg:h-12
+                animation ease-in-out delay-100 hover:-translate-y-2 duration-100
             " src="./jKspeechfiles/vs.png" alt="">
+
+            <button class="block absolute my-32 bg-[url('./jKspeechfiles/start.png')] bg-center bg-contain bg-no-repeat w-32 h-20
+                lg:my-24
+                animation ease-in-out delay-100 hover:-translate-y-2 duration-100
+                "
+                id="startButton"></button>
+
+            <div class="absolute bg-slate-600 h-16 w-16"></div>
+
+
 
             <div>
                 <img class="max-h-60 lg:max-h-72
                 animation ease-in-out delay-75 duration-100
                 " src="./jKspeechfiles/frame.png">
             </div>
-            <button class="
-            block absolute my-20 bg-[url('./jKspeechfiles/start.png')] bg-center bg-contain bg-no-repeat w-40 h-20
-                lg:my-24
-                animation ease-in-out delay-100 hover:-translate-y-2 duration-100
-                "></button>
+            
         </div>
         
-        <div class=" grid grid-flow-col h-40 mt-10 justify-center
+        <div class=" grid grid-flow-col h-40 mt-10 gap-1 justify-center
             lg:pt-14 lg:gap-1
             animation ease-in-out delay-100 duration-100
         ">
@@ -47,16 +58,31 @@
             <img class="-z-20 max-h-36 lg:max-h-44
             animation ease-in-out delay-100 duration-100
             " src="./jKspeechfiles/terrace.png" alt="">
-            
+
             <img class="-z-20 max-h-24
             animation ease-in-out delay-100 duration-100
             " src="./jKspeechfiles/timer.png" alt="">
+            
             <img class="-z-20 max-h-36 lg:max-h-44
             animation ease-in-out delay-100 duration-100
             " src="./jKspeechfiles/terrace.png" alt="">
         </div>
     </div>
-    
+    <p>Press a key on your keyboard:</p>
+    <p id="result"></p>
+
+    <script>
+        var resultElement = document.getElementById("result");
+
+        // Add a keydown event listener to the document
+        document.addEventListener("keydown", function(event) {
+            // Get the key code or key identifier from the event
+            var key = event.key || event.keyCode || event.which;
+
+            // Display the pressed key in the result element
+            resultElement.innerHTML = "You pressed: " + key;
+        });
+    </script>
         
 </body>
 </html>
