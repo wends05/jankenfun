@@ -6,7 +6,7 @@ import time
 from helper import hand_state
 import pygame
 pygame.font.init()
-
+# from flask import Flask, render_template
 
 # Initialize pygame
 pygame.init()
@@ -15,7 +15,7 @@ pygame.init()
 sound_file = "./Resources/BGM.mp3"
 
 # Create a Sound object
-sound = pygame.mixer.Sound('./Resources/BGM.mp3')
+sound = pygame.mixer.Sound('Resources/BGM.mp3')
 
 # Play the sound
 sound.play()
@@ -168,9 +168,13 @@ while True:
         scores_AI = 3
         scores_Player = 3
         scores = 0
+        sound.stop()
         sound.play()
         lose = False
         win = False
+    
+    if key == ord('q'):
+        cv2.destroyWindow("JankenFun")
 
 
 
