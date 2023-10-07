@@ -73,7 +73,9 @@ function startRound() {
                 finalTranscript += event.results[i][0].transcript;
             }
         finalTranscript += " ";
-        checkUserInput()
+        if (isOnRound) {
+           checkUserInput() 
+        }
         }
         
     }
@@ -139,7 +141,7 @@ function computerInput() {
 //check + displays
 
 function comparePicks() {
-    checkUserInput()
+
     computerInput()
 
     compDisplay.src =`./jKspeechfiles/${compPick}.png`
