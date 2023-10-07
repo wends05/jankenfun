@@ -9,22 +9,20 @@ lose.style.display = "none";
 win.style.display = "none";
 
 startButton.addEventListener("click", () => {
-    if (gameEnded == false) {
+    if (gameEnded == false && isOnRound == false) {
     startRound();
     isOnRound = true;
     }
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.key == "s" && isOnRound == false && gameEnded) {
+    if (event.key == "s" && isOnRound == false && gameEnded == false) {
     startRound();
-    isOnRound =true;
+    isOnRound = true;
     }
 });
 
 // game proper
-
-
 
 // health system
 var playerHealthDisplay = document.getElementById('playerHealthdisp');
@@ -61,19 +59,20 @@ function startRound() {
     console.log('yay');
     var displayTimer = 5;
 
-    listener.onresult = (event) => {
-        
+
+    playerDisplay.src = `./jKspeechfiles/none.png`;
+    compDisplay.src = `./jKspeechfiles/none.png`;
+
+    //listening
+
+    listener.onresult = (event) => {    
         for (let i = event.resultIndex; i < event.results.length; i++) {
-            
             if (event.results[i].isFinal) {
                 finalTranscript += event.results[i][0].transcript;
             } else {
                 finalTranscript += event.results[i][0].transcript;
             }
-            finalTranscript += " "
-            
-            
-        console.log(finalTranscript);
+        finalTranscript += " ";
         checkUserInput()
         }
         
@@ -90,11 +89,7 @@ function startRound() {
 
     //start display
 
-    startButton.style.display = "none";
-    
-    //listening
-
-    
+    startButton.style.display = "none";    
 
     time = setInterval(() => {
         listener.stop();
@@ -118,7 +113,6 @@ var compPick = "";
 var compDisplay = document.getElementById('compDisplay');
 var playerDisplay = document.getElementById('playerDisplay');
 
-
 function checkUserInput() {
     var listWords = finalTranscript.split(' ');
     console.log(listWords)
@@ -134,7 +128,7 @@ function checkUserInput() {
         }
     };
     console.log("Player: " + playerPick)
-    
+    playerDisplay.src = `./jKspeechfiles/${playerPick}.png`;
 }
 
 function computerInput() {
@@ -148,7 +142,6 @@ function comparePicks() {
     checkUserInput()
     computerInput()
 
-    playerDisplay.src = `./jKspeechfiles/${playerPick}.png`;
     compDisplay.src =`./jKspeechfiles/${compPick}.png`
     
     console.log("Computer: " + compPick, "Player: " + playerPick)
@@ -172,10 +165,9 @@ function comparePicks() {
         endGame()
     };
 
+    isOnRound = false
+}
     
-
-
-
 function Tie() {
     console.log("Tied")
 
@@ -202,5 +194,4 @@ function endGame() {
     } else {
         win.style.display = "block"
     };
-}
 }
