@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Recognition</title>
+</head>
+<body>
+    <button id="startRecognition">Start Recognition</button>
+    <div id="output"></div>
+
+    <script>
+        const startButton = document.getElementById('startRecognition');
+        const outputDiv = document.getElementById('output');
+        const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for Chrome
+
+        recognition.continuous = true;
+        recognition.interimResults = true;
+
+        recognition.onstart = function() {
+            outputDiv.innerHTML = 'Listening...';
+        };
+
+        recognition.onresult = function(event) {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    transcript += event.results[i][0].transcript;
+                } else {
+                    transcript += event.results[i][0].transcript;
+                }
+            }
+            outputDiv.innerHTML = transcript;
+        };
+
+        recognition.onerror = function(event) {
+            outputDiv.innerHTML = 'Error: ' + event.error;
+        };
+
+        startButton.addEventListener('click', function() {
+            recognition.start();
+            setTimeout(function() {
+                recognition.stop();
+                outputDiv.innerHTML = 'Recognition stopped.';
+            }, 10000); // Stop recognition after 5 seconds
+        });
+    </script>
+</body>
+</html>

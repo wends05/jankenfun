@@ -1,15 +1,9 @@
 
-
-
-
-
-
-
-
 var images = ["/menuFiles/timer3.png", "/menuFiles/timer2.png", "/menuFiles/timer1.png"];
-    index = 0;
 
-    timer = setInterval(() => {
+index = 0;
+
+timer = setInterval(() => {
     if (index < 3) {
     const time = document.getElementById('timer');
     time.src =images[index];
