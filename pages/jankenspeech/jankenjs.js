@@ -56,15 +56,11 @@ function startRound() {
     }, 1000)
 
 
-    //timer display
+    //start display
 
     startButton.style.display = "none";
     
     //listening
-
-    
-    
-    
 
     listener.onresult = (event) => {
         
@@ -74,9 +70,9 @@ function startRound() {
                 finalTranscript += event.results[i][0].transcript;
             }
             
-        
-        }
         console.log(finalTranscript);
+        }
+        
     }
 
     time = setInterval(() => {
@@ -153,7 +149,13 @@ function comparePicks() {
 
     if (CompHealth < 1 || PlayerHealth < 1) {
         endGame()
-    }
+    };
+
+    if (PlayerHealth == 0) {
+        lose.style.display = "block";
+    } else {
+        win.style.display = "block"
+    };
 }
 
 var CompHealth = 1;
@@ -184,11 +186,7 @@ function Lose() {
 }
 
 function endGame() {
-    if (PlayerHealth == 0) {
-        lose.style.display = "display";
-    } else {
-        win.style.display = "display"
-    };
+    
     gameEnded = true;
     console.log("Game ended");
     
