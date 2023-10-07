@@ -9,7 +9,7 @@ function loadingPageOpen() {
 
 function mazeCraze() {
     
-    window.open('/pages/jankenspeech/butang di inyo na html file', '_blank');
+    window.open('/pages/voice-controlled-maze/index.html', '_blank');
     // nick / patrick dri kamo butang sang code kay
     // connected n siya sa play button sa main menu    
     loadingPageOpen()
