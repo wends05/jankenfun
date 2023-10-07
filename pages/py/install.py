@@ -12,10 +12,10 @@ pygame.font.init()
 pygame.init()
 
 # Load a sound file
-sound_file = "Resources/BGM.mp3"
+sound_file = "./Resources/BGM.mp3"
 
 # Create a Sound object
-sound = pygame.mixer.Sound(sound_file)
+sound = pygame.mixer.Sound('./Resources/BGM.mp3')
 
 # Play the sound
 sound.play()
