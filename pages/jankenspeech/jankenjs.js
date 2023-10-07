@@ -1,12 +1,21 @@
 var startButton = document.getElementById('startButton')
 var isOnRound = false;
+var gameEnded = false;
+
+var lose = document.getElementById('lose');
+var win = document.getElementById('win');
+
+lose.style.display = "none";
+win.style.display = "none";
 
 startButton.addEventListener("click", () => {
+    if (gameEnded == false) {
     startRound();
     isOnRound = true;
+    }
 })
 document.addEventListener("keydown", (event) => {
-    if (event.key == "s" && isOnRound == false) {
+    if (event.key == "s" && isOnRound == false && gameEnded) {
     startRound();
     isOnRound =true;
     }
@@ -21,14 +30,54 @@ if ('webkitSpeechRecognition' in window) {
     listener = new SpeechRecognition()
 }
 
+listener.continuous = true;
+listener.interimResults = true;
 //recognize speech to sentence
 
+var timerDisplay = document.getElementById('timecount');
+
+timerDisplay.innerHTML = "";
+
 let finalTranscript = "";
+var timee;
 
 function startRound() {
-
+    listener.start();
     isOnRound = true;
     console.log('haha');
+    var displayTimer = 5;
+    timerDisplay.innerHTML = displayTimer;
+    countdown = setInterval(() => {
+        if (displayTimer >= 1) {
+            
+            displayTimer = displayTimer - 1;
+            timerDisplay.innerHTML = displayTimer;
+        }
+    }, 1000)
+
+
+    //timer display
+
+    startButton.style.display = "none";
+    
+    //listening
+
+    
+    
+    
+
+    listener.onresult = (event) => {
+        
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            
+            if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript;
+            }
+            
+        
+        }
+        console.log(finalTranscript);
+    }
 
     time = setInterval(() => {
         listener.stop();
@@ -37,24 +86,10 @@ function startRound() {
         clearInterval(time);
         comparePicks();
         finalTranscript = "";
-    }, 5000);
 
-    //timer display
-
-    timerDisplay
-
-    startButton.style.display = "none";
-    
-    listener.start();
-
-    listener.onresult = (event) => {
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            const transcript = event.results[i][0].transcript;
-            finalTranscript += transcript
-        console.log(transcript);
         
-    }
-}};
+    }, 5000);
+};
 
 // get player input, sentence to latest word that matches
 // rock paper scissors
@@ -62,6 +97,10 @@ function startRound() {
 var pick = ["rock", "paper", "scissors"]
 var playerPick = "";
 var compPick = "";
+
+var compDisplay = document.getElementById('compDisplay');
+var playerDisplay = document.getElementById('playerDisplay')
+
 
 function checkUserInput() {
     var listWords = finalTranscript.split(' ');
@@ -78,17 +117,23 @@ function checkUserInput() {
         }
     };
     console.log("Player: " + playerPick)
+    
 }
 
 function computerInput() {
-    compPick = pick[Math.floor(Math.random() * 3)]
+    compPick = pick[Math.floor(Math.random() * 3)];
+
 }
 
 //check + displays
+
 function comparePicks() {
     checkUserInput()
     computerInput()
 
+    playerDisplay.src = `./jKspeechfiles/${playerPick}.png`;
+    compDisplay.src =`./jKspeechfiles/${compPick}.png`
+    
     console.log("Computer: " + compPick, "Player: " + playerPick)
 
     if (compPick == playerPick) {
@@ -106,23 +151,45 @@ function comparePicks() {
         }
     }
 
-
+    if (CompHealth < 1 || PlayerHealth < 1) {
+        endGame()
+    }
 }
 
-var compHealth = 5;
+var CompHealth = 1;
 var PlayerHealth = 5;
 
 // health system
+var playerHealthDisplay = document.getElementById('playerHealthdisp');
+var compHealthDisplay = document.getElementById('compHealthdisp');
+
+playerHealthDisplay.innerHTML = PlayerHealth;
+compHealthDisplay.innerHTML = CompHealth;
+
 function Tie() {
     console.log("Tied")
+
 }
 
 function Win() {
-    compHealth -= 1;
-    console.log("Win")
+    CompHealth -= 1;
+    console.log("Win");
+    compHealthDisplay.innerHTML = CompHealth;
 }
 
 function Lose() {
     PlayerHealth -= 1;
-    console.log("Lose")
+    console.log("Lose");
+    playerHealthDisplay.innerHTML = PlayerHealth;
+}
+
+function endGame() {
+    if (PlayerHealth == 0) {
+        lose.style.display = "display";
+    } else {
+        win.style.display = "display"
+    };
+    gameEnded = true;
+    console.log("Game ended");
+    
 }

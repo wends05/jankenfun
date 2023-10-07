@@ -19,10 +19,14 @@
         animation ease-in-out delay-100 duration-100
         ">
             <div><div class="absolute bg-slate-600 h-fit w-fit"></div>
+            
+            <img id="lose" class="z-10 absolute h-60 mx-40" src="./jKspeechfiles/you lose.png" alt="">
+            <img id="win" class="z-10 absolute mx-20 mt-10 lg:mt-16 lg:mx-28" src="./jKspeechfiles/youwin!.png" alt="">
 
                     <img class="max-h-60 lg:max-h-72
                 animation ease-in-out delay-75 duration-100
-                " src="./jKspeechfiles/frame.png">
+                " src="./jKspeechfiles/none.png"
+                id="compDisplay">
             </div>
 
             <img class="absolute h-10 align-middle mt-20
@@ -36,14 +40,11 @@
                 "
                 id="startButton"></button>
 
-            
-
-
-
             <div>
                 <img class="max-h-60 lg:max-h-72
                 animation ease-in-out delay-75 duration-100
-                " src="./jKspeechfiles/frame.png">
+                " src="./jKspeechfiles/none.png"
+                id="playerDisplay">
             </div>
             
         </div>
@@ -52,25 +53,55 @@
             lg:pt-14 lg:gap-1
             animation ease-in-out delay-100 duration-100
         ">
-        
-            <img class="-z-20 max-h-36 lg:max-h-44
-            animation ease-in-out delay-100 duration-100
-            " src="./jKspeechfiles/terrace.png" alt="">
+            <div class="-z-20">
+                <div class="absolute 
+                
+                ">
+                     <img class="h-16 mt-10 ml-14 lg:ml-20
+                     animation ease-in-out delay-100 duration-100
+                " src="./jKspeechfiles/heart.png" alt="">
+                <span class="absolute w-full ml-7 -mt-12 lg:ml-10 text-center self-center
+                    text-white
+                    animation ease-in-out delay-100 duration-100
+                " id="compHealthdisp"> 1 </span>
+                </div>
+               
+                
+                <img class="max-h-36 lg:max-h-44
+                    animation ease-in-out delay-100 duration-100
+                    " src="./jKspeechfiles/terrace.png" alt="">
+            </div>
+            
 
             <img class="-z-20 max-h-24
             animation ease-in-out delay-100 duration-100
             " src="./jKspeechfiles/timer.png" alt="">
             
-            <span class="absolute text-center ml-3 mb-6 self-center w-full items-center" id = "timecount"
-            >
-                5</span>
+            <span class="absolute text-center ml-3 mb-6 self-center w-full items-center"
+            id = "timecount"
+            ></span>
             
-            <img class="-z-20 max-h-36 lg:max-h-44
+                <div class="-z-20">
+                    <div class="absolute
+                    ">
+                        <img class="h-16 mt-10 ml-14 lg:ml-20
+                        animation ease-in-out delay-100 duration-100
+                   " src="./jKspeechfiles/heart.png" alt="">
+                   <span class="absolute w-full ml-7 -mt-12 lg:ml-10 text-center self-center
+                       text-white
+                       animation ease-in-out delay-100 duration-100
+                   " id="playerHealthdisp"> 1 </span>
+                   </div>
+                    <img class="max-h-36 lg:max-h-44
             animation ease-in-out delay-100 duration-100
             " src="./jKspeechfiles/terrace.png" alt="">
+                
+
+                </div>
+            
+
         </div>
     </div>
-    
         
 </body>
 </html>
