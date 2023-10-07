@@ -18,13 +18,11 @@
         <div class="flex flex-row gap-36 h-40 mt-2 justify-center
         animation ease-in-out delay-100 duration-100
         ">
-            <div>
-                <div>
+            <div><div class="absolute bg-slate-600 h-fit w-fit"></div>
+
                     <img class="max-h-60 lg:max-h-72
                 animation ease-in-out delay-75 duration-100
                 " src="./jKspeechfiles/frame.png">
-                </div>
-                
             </div>
 
             <img class="absolute h-10 align-middle mt-20
@@ -38,7 +36,7 @@
                 "
                 id="startButton"></button>
 
-            <div class="absolute bg-slate-600 h-16 w-16"></div>
+            
 
 
 
@@ -63,26 +61,16 @@
             animation ease-in-out delay-100 duration-100
             " src="./jKspeechfiles/timer.png" alt="">
             
+            <span class="absolute text-center ml-3 mb-6 self-center w-full items-center" id = "timecount"
+            >
+                5</span>
+            
             <img class="-z-20 max-h-36 lg:max-h-44
             animation ease-in-out delay-100 duration-100
             " src="./jKspeechfiles/terrace.png" alt="">
         </div>
     </div>
-    <p>Press a key on your keyboard:</p>
-    <p id="result"></p>
-
-    <script>
-        var resultElement = document.getElementById("result");
-
-        // Add a keydown event listener to the document
-        document.addEventListener("keydown", function(event) {
-            // Get the key code or key identifier from the event
-            var key = event.key || event.keyCode || event.which;
-
-            // Display the pressed key in the result element
-            resultElement.innerHTML = "You pressed: " + key;
-        });
-    </script>
+    
         
 </body>
 </html>
