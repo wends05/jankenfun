@@ -47,7 +47,7 @@ listener.interimResults = true;
 
 var timerDisplay = document.getElementById('timecount');
 
-timerDisplay.innerHTML = "";
+timerDisplay.innerHTML = 5;
 
 let finalTranscript = "";
 var time;
