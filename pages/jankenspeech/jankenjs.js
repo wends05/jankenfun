@@ -13,15 +13,27 @@ startButton.addEventListener("click", () => {
     startRound();
     isOnRound = true;
     }
-})
+});
+
 document.addEventListener("keydown", (event) => {
     if (event.key == "s" && isOnRound == false && gameEnded) {
     startRound();
     isOnRound =true;
     }
-})
+});
 
 // game proper
+
+
+
+// health system
+var playerHealthDisplay = document.getElementById('playerHealthdisp');
+var compHealthDisplay = document.getElementById('compHealthdisp');
+var CompHealth = 5;
+var PlayerHealth = 5;
+
+playerHealthDisplay.innerHTML = PlayerHealth;
+compHealthDisplay.innerHTML = CompHealth;
 
 // initialize voice recog from mozilla(?) and chrome
 if ('webkitSpeechRecognition' in window) {
@@ -32,6 +44,7 @@ if ('webkitSpeechRecognition' in window) {
 
 listener.continuous = true;
 listener.interimResults = true;
+
 //recognize speech to sentence
 
 var timerDisplay = document.getElementById('timecount');
@@ -39,28 +52,14 @@ var timerDisplay = document.getElementById('timecount');
 timerDisplay.innerHTML = "";
 
 let finalTranscript = "";
-var timee;
+var time;
 
 function startRound() {
     listener.start();
+
     isOnRound = true;
-    console.log('haha');
+    console.log('yay');
     var displayTimer = 5;
-    timerDisplay.innerHTML = displayTimer;
-    countdown = setInterval(() => {
-        if (displayTimer >= 1) {
-            
-            displayTimer = displayTimer - 1;
-            timerDisplay.innerHTML = displayTimer;
-        }
-    }, 1000)
-
-
-    //start display
-
-    startButton.style.display = "none";
-    
-    //listening
 
     listener.onresult = (event) => {
         
@@ -68,12 +67,34 @@ function startRound() {
             
             if (event.results[i].isFinal) {
                 finalTranscript += event.results[i][0].transcript;
+            } else {
+                finalTranscript += event.results[i][0].transcript;
             }
+            finalTranscript += " "
+            
             
         console.log(finalTranscript);
+        checkUserInput()
         }
         
     }
+
+    timerDisplay.innerHTML = displayTimer;
+    countdown = setInterval(() => {
+        if (displayTimer >= 1) {
+            
+            displayTimer = displayTimer - 1;
+            timerDisplay.innerHTML = displayTimer;
+        }
+    }, 1000);
+
+    //start display
+
+    startButton.style.display = "none";
+    
+    //listening
+
+    
 
     time = setInterval(() => {
         listener.stop();
@@ -95,7 +116,7 @@ var playerPick = "";
 var compPick = "";
 
 var compDisplay = document.getElementById('compDisplay');
-var playerDisplay = document.getElementById('playerDisplay')
+var playerDisplay = document.getElementById('playerDisplay');
 
 
 function checkUserInput() {
@@ -151,22 +172,9 @@ function comparePicks() {
         endGame()
     };
 
-    if (PlayerHealth == 0) {
-        lose.style.display = "block";
-    } else {
-        win.style.display = "block"
-    };
-}
+    
 
-var CompHealth = 1;
-var PlayerHealth = 5;
 
-// health system
-var playerHealthDisplay = document.getElementById('playerHealthdisp');
-var compHealthDisplay = document.getElementById('compHealthdisp');
-
-playerHealthDisplay.innerHTML = PlayerHealth;
-compHealthDisplay.innerHTML = CompHealth;
 
 function Tie() {
     console.log("Tied")
@@ -189,5 +197,10 @@ function endGame() {
     
     gameEnded = true;
     console.log("Game ended");
-    
+    if (PlayerHealth == 0) {
+        lose.style.display = "block";
+    } else {
+        win.style.display = "block"
+    };
+}
 }
