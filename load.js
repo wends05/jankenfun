@@ -7,7 +7,7 @@ function loadingPageOpen() {
 }  
 
 function mazeCraze() {
-    window.open('/pages/voice-controlled-maze/index.html', '_blank');   
+    window.open('/pages/voicecontrolledmaze/index.html', '_blank');   
     loadingPageOpen()
 }
 
